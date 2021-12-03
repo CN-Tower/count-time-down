@@ -19,10 +19,13 @@ const getConfig = isMinify => ({
     format: 'umd',
     banner: banner,
     exports: 'named',
-  }
+    ...(
+      isMinify ? { sourcemap: true } : {}
+    ),
+  },
 });
 
 export default [
   getConfig(),
   getConfig(true),
-]
+];

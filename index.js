@@ -1,5 +1,5 @@
 /*!
- * time-cd.js(v1.0.1)
+ * time-cd.js(v1.0.2)
  * A CountDown handler, 一个js的倒计时类。
  */
 (function (factory) {

@@ -1,6 +1,6 @@
 {
   "name": "time-cd",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CountDown handler, 一个js的倒计时类。",
   "main": "index.js",
   "scripts": {
