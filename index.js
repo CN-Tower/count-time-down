@@ -1,5 +1,5 @@
 /*!
- * time-cd.js(v1.0.0)
+ * time-cd.js(v1.0.1)
  * A CountDown handler, 一个js的倒计时类。
  */
 (function (factory) {
@@ -59,16 +59,21 @@
     }
 
     options = isObj(options) ? options : {};
-    this.options = options; // 初始时间
+    this.options = options;
 
-    this.initTime = isNum(time) ? time : null; // 剩余时间
+    // 初始时间
+    this.initTime = isNum(time) ? time : null;
 
-    this.restTime = this.time; // 定时间隔
+    // 剩余时间
+    this.restTime = this.time;
 
-    this.interval = isNum(options.interval) ? options.interval : 1000; // 是否自动启动倒计时
+    // 定时间隔
+    this.interval = isNum(options.interval) ? options.interval : 1000;
 
-    this.autoStart = options.autoStart !== false; // 倒计时类型，'d': 计算到天；'h': 计算到小时；'m': 计算到分钟；'s': 计算到秒；默认：'h'
+    // 是否自动启动倒计时
+    this.autoStart = options.autoStart !== false;
 
+    // 倒计时类型，'d': 计算到天；'h': 计算到小时；'m': 计算到分钟；'s': 计算到秒；默认：'h'
     this.cdType = ['d', 'h', 'm', 's'].indexOf(options.cdType) > -1 ? options.cdType : 'h';
     this.running = false;
     this.destoryed = false;
