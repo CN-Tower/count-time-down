@@ -1,0 +1,41 @@
+{
+  "name": "time-cd",
+  "version": "1.0.0",
+  "description": "A CountDown handler, 一个js的倒计时类。",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c rollup.config.js && node scripts/buildfix.js",
+    "test:js": "node test/test.js",
+    "test:ts": "esno test/test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CN-Tower/time-cd.git"
+  },
+  "keywords": [
+    "cd",
+    "time-cd",
+    "time-countdown",
+    "countdown-time",
+    "countdown",
+    "countdownjs",
+    "countdown-js",
+    "js-countdown",
+    "CountDown",
+    "count-down"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CN-Tower/time-cd/issues"
+  },
+  "homepage": "https://github.com/CN-Tower/time-cd#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "esno": "^0.12.1",
+    "funclib": "^6.0.6",
+    "rollup": "^2.60.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

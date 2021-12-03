@@ -1,72 +1,3 @@
-# time-cd
-
-> A CountDown handler. 一个js的倒计时类。
-
-## 1 Install & Import 安装导入
-
-### 1.1 Install
-```bash
-# Use yarn
-yarn add time-cd
-
-# Use npm
-npm install time-cd
-```
-
-### 1.2 Import
-```js
-// Es Module
-import CountDown from 'time-cd'; 
-
-// In CommonJS
-const CountDown = require('time-cd');
-```
-
-## 2 Quick Start 快速上手
-
-### 2.1 Create and automatically start a 24-hour countdown
-> 创建并自动开启一个24小时的倒计时
-
-```js
-new CountDown(854e5, cd => console.log(cd.hhmmss));
-```
-
-### 2.2 Create and automatically start a 60s countdown
-> 创建并自动开启一个60s的倒计时
-
-```js
-new CountDown(60000, { cdType: 's' }, cd => console.log(cd.s));
-```
-
-### 2.3 Create a 60s countdown and fire the start stop method
-> 创建一个60s倒计时，并设置开始和结束
-
-```js
-const countdown = new CountDown(60000, { autoStart: false }, () => {
-  console.log(countdown);
-});
-
-countdown.start();
-// A moment later
-countdown.stop();
-// Start again
-countdown.start();
-// Destory
-countdown.destory();
-```
-
-### 2.4 Create a countdown, customize the time and processing function
-> 创建一个倒计时，自定义时间、处理函数和开启倒计时
-
-```js
-const countdown = new CountDown();
-
-countdown.onTick = cd => console.log(countdown)}
-countdown.start();
-```
-
-## 3 Interface 接口
-```ts
 /**
  * Time，倒计时时间
  */
@@ -83,7 +14,7 @@ interface CountDownOptions {
   // 倒计时步进间隔，默认: 1000
   interval?: number;
 }
-
+ 
 /**
  * CountDown 构造定义
  */
@@ -126,4 +57,6 @@ declare class CountDown {
   constructor(time: CountDownTime, tickHandler?: (cd: CountDown) => any);
   constructor(time: CountDownTime, options: CountDownOptions, tickHandler?: (cd: CountDown) => any);
 }
-```
+
+export = CountDown;
+export as namespace CountDown;
