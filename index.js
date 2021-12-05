@@ -1,6 +1,6 @@
 /*!
- * time-cd.js(v1.0.2)
- * A CountDown handler, 一个js的倒计时类。
+ * count-time-down@1.0.0
+ * A helpful countdown class, 一个实用的的倒计时类
  */
 (function (factory) {
   typeof define === 'function' && define.amd ? define(factory) :
@@ -26,12 +26,12 @@
    * @param {Function} tickCallback 倒计时步进回调
    *
    * @example
-   * import CountDown from 'time-cd'; 
+   * import CountDown from 'count-time-down'; 
    * // In NodeJS
-   * // const CountDown = require('time-cd');
+   * // const CountDown = require('count-time-down');
    *
    * // 1、创建并自动开启一个24小时的倒计时
-   * new CountDown(854e5, cd => console.log(cd.hhmmss));
+   * new CountDown(864e5, cd => console.log(cd.hhmmss));
    *
    * // 2、创建并自动开启一个60s的倒计时
    * new CountDown(60000, { cdType: 's' }, cd => console.log(cd.s));
@@ -107,6 +107,8 @@
       this.running = true;
 
       if (this.interval >= 0 && this.restTime >= this.interval) {
+        this.completed = false;
+        clearInterval(this.timerId);
         this.timerId = setInterval(function () {
           return _this.tick();
         }, this.interval);

@@ -9,12 +9,12 @@ const isNum = value => typeof value === 'number' && !Number.isNaN(value) && Numb
  * @param {Function} tickCallback 倒计时步进回调
  *
  * @example
- * import CountDown from 'time-cd'; 
+ * import CountDown from 'count-time-down'; 
  * // In NodeJS
- * // const CountDown = require('time-cd');
+ * // const CountDown = require('count-time-down');
  *
  * // 1、创建并自动开启一个24小时的倒计时
- * new CountDown(854e5, cd => console.log(cd.hhmmss));
+ * new CountDown(864e5, cd => console.log(cd.hhmmss));
  *
  * // 2、创建并自动开启一个60s的倒计时
  * new CountDown(60000, { cdType: 's' }, cd => console.log(cd.s));
@@ -78,6 +78,8 @@ function CountDown(time, options, tickCallback) {
     if (this.destoryed) return;
     this.running = true;
     if (this.interval >= 0 && this.restTime >= this.interval) {
+      this.completed = false;
+      clearInterval(this.timerId);
       this.timerId = setInterval(() => this.tick(), this.interval);
     } else {
       this.setComplete();

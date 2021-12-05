@@ -1,25 +1,25 @@
-# time-cd
+# count-time-down
 
-> A CountDown handler. 一个js的倒计时类。
+> A helpful countdown class, 一个实用的的倒计时类
 
 ## 1 Install & Import 安装导入
 
 ### 1.1 Install
 ```bash
 # Use yarn
-yarn add time-cd
+yarn add count-time-down
 
 # Use npm
-npm install time-cd
+npm install count-time-down
 ```
 
 ### 1.2 Import
 ```js
 // Es Module
-import CountDown from 'time-cd'; 
+import CountDown from 'count-time-down'; 
 
 // In CommonJS
-const CountDown = require('time-cd');
+const CountDown = require('count-time-down');
 ```
 
 ## 2 Quick Start 快速上手

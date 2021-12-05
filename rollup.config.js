@@ -4,8 +4,8 @@ const pkg = require('./package.json');
 
 const banner = `\
 /*!
- * time-cd.js(v${pkg.version})
- * A CountDown handler, 一个js的倒计时类。
+ * count-time-down@${pkg.version}
+ * A helpful countdown class, 一个实用的的倒计时类
  */
 `;
 

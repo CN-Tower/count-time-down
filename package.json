@@ -1,20 +1,21 @@
 {
-  "name": "time-cd",
-  "version": "1.0.2",
-  "description": "A CountDown handler, 一个js的倒计时类。",
+  "name": "count-time-down",
+  "version": "1.0.0",
+  "description": "A helpful countdown class, 一个实用的的倒计时类",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js && node scripts/buildfix.js",
+    "build": "rollup -c rollup.config.js && node scripts/postbuild.js",
     "test:js": "node test/test.js",
     "test:ts": "esno test/test.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CN-Tower/time-cd.git"
+    "url": "git+https://github.com/CN-Tower/count-time-down.git"
   },
   "keywords": [
     "cd",
     "time-cd",
+    "count-time-down",
     "time-countdown",
     "countdown-time",
     "countdown",
@@ -27,10 +28,11 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CN-Tower/time-cd/issues"
+    "url": "https://github.com/CN-Tower/count-time-down/issues"
   },
-  "homepage": "https://github.com/CN-Tower/time-cd#readme",
+  "homepage": "https://github.com/CN-Tower/count-time-down#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "esno": "^0.12.1",
     "funclib": "^6.0.6",
