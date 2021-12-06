@@ -64,6 +64,8 @@ countdown.destory();
 const countdown = new CountDown();
 
 countdown.onTick = cd => console.log(countdown)}
+countdown.time = 1000;
+countdown.cdType = 's';
 countdown.start();
 ```
 
