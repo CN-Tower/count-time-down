@@ -1,5 +1,7 @@
 # count-time-down
 
+[![npm](https://img.shields.io/npm/v/count-time-down.svg)](https://www.npmjs.com/package/count-time-down) 
+
 > A helpful countdown class, 一个实用的的倒计时类
 
 ## 1 Install & Import 安装导入
