@@ -30,7 +30,7 @@ const CountDown = require('count-time-down');
 > 创建并自动开启一个24小时的倒计时
 
 ```js
-new CountDown(854e5, cd => console.log(cd.hhmmss));
+new CountDown(864e5, cd => console.log(cd.hhmmss));
 ```
 
 ### 2.2 Create and automatically start a 60s countdown
