@@ -1,5 +1,5 @@
 /*!
- * count-time-down@1.0.0
+ * count-time-down@1.0.1
  * A helpful countdown class, 一个实用的的倒计时类
  */
 (function (factory) {
@@ -28,26 +28,38 @@
    * @example
    * import CountDown from 'count-time-down'; 
    * // In NodeJS
-   * // const CountDown = require('count-time-down');
+   * const CountDown = require('count-time-down');
    *
-   * // 1、创建并自动开启一个24小时的倒计时
+   * 1. 创建并自动开启一个24小时的倒计时
    * new CountDown(864e5, cd => console.log(cd.hhmmss));
    *
-   * // 2、创建并自动开启一个60s的倒计时
-   * new CountDown(60000, { cdType: 's' }, cd => console.log(cd.s));
-   *
-   * // 3、创建一个60s倒计时，并设置开始和结束
-   * const countdown = new CountDown(60000, { autoStart: false }, () => {
-   *   console.log(countdown);
-   * });
-   * countdown.start();
-   * // A moment later
-   * countdown.stop();
+   * 2. 创建并自动开启一个60s的倒计时
+   * new CountDown(10000, { cdType: 's' }, cd => console.log(cd.s));
    * 
-   * // 4、创建一个倒计时，自定义时间、处理函数和开启倒计时
-   * const countdown = new CountDown();
-   * countdown.onTick = cd => console.log(countdown)}
-   * countdown.start();
+   * 3. 创建一个可以显示毫秒的定时器
+   * new CountDown(10000, { interval: 50 }, ({ss, SSS}) => { 
+   *   console.log(`${ss} ${S}`);
+   * });
+   * 
+   * 4. 创建一个60s倒计时，手动开始和结束
+   * const cd = new CountDown(60000, { autoStart: false }, () => {
+   *   console.log(cd);
+   * });
+   * // A moment later
+   * cd.start();
+   * 
+   * 5. 创建一个倒计时，自定义参数再启动
+   * const cd = new CountDown();
+   * cd.time = 10000;
+   * cd.cdType = 's';
+   * cd.onTick = cd => console.log(cd);
+   * cd.start();
+   * // A moment later
+   * cd.stop();
+   * // A moment later
+   * cd.start();
+   * // Destory The countdown
+   * cd.destory();
    */
   function CountDown(time, options, tickCallback) {
     var _this3 = this;
@@ -73,8 +85,8 @@
     // 是否自动启动倒计时
     this.autoStart = options.autoStart !== false;
 
-    // 倒计时类型，'d': 计算到天；'h': 计算到小时；'m': 计算到分钟；'s': 计算到秒；默认：'h'
-    this.cdType = ['d', 'h', 'm', 's'].indexOf(options.cdType) > -1 ? options.cdType : 'h';
+    // 倒计时类型，d: 到天，h: 到小时，m: 到分钟，s: 到秒，S: 到毫秒，默认：'h'.
+    this.cdType = ['d', 'h', 'm', 's', 'S'].indexOf(options.cdType) > -1 ? options.cdType : 'h';
     this.running = false;
     this.destoryed = false;
     this.completed = false;
@@ -83,14 +95,17 @@
     this.restHours = null;
     this.restMinuts = null;
     this.restSeconds = null;
-    this.d = '-';
-    this.h = '-';
-    this.m = '-';
-    this.s = '-';
+    this.restMillisecond = null;
+    this.d = null;
+    this.h = null;
+    this.m = null;
+    this.s = null;
+    this.S = null;
     this.dd = '--';
     this.hh = '--';
     this.mm = '--';
     this.ss = '--';
+    this.SSS = '---';
     this.ms = '-:-';
     this.hms = '-:-:-';
     this.mmss = '--:--';
@@ -135,6 +150,15 @@
     };
 
     /**
+     * 定时器结束
+     */
+    this.setComplete = function () {
+      clearInterval(this.timerId);
+      this.running = false;
+      this.completed = true;
+    };
+
+    /**
      * 定时步进
      */
     this.tick = function () {
@@ -159,14 +183,12 @@
     this.setValue = function () {
       var _this2 = this;
 
-      if (!this.restTime || this.restTime < 0) {
-        this.restTime = 0;
-      }
-
-      this.restSeconds = Math.floor(this.restTime / 1000);
+      if (!this.restTime || this.restTime < 0) this.restTime = 0;
       this.restDays = Math.floor(this.restTime / 864e5);
-      this.restHours = Math.floor(this.restSeconds / 3600);
-      this.restMinuts = Math.floor(this.restSeconds / 60);
+      this.restHours = Math.floor(this.restTime / 36e5);
+      this.restMinuts = Math.floor(this.restTime / 6e4);
+      this.restSeconds = Math.floor(this.restTime / 1000);
+      this.restMillisecond = this.restTime;
 
       if (this.cdType === 'd') {
         var restSeconds = Math.floor(this.restTime % 864e5 / 1000);
@@ -180,39 +202,42 @@
         this.m = Math.floor(this.restSeconds % 3600 / 60);
         this.s = Math.floor(this.restSeconds % 60);
       } else if (this.cdType === 'm') {
-        this.d = 0;
-        this.h = 0;
+        this.d = this.h = 0;
         this.m = this.restMinuts;
         this.s = Math.floor(this.restSeconds % 60);
       } else if (this.cdType === 's') {
-        this.d = 0;
-        this.h = 0;
-        this.m = 0;
+        this.d = this.h = this.m = 0;
         this.s = this.restSeconds;
+      } else if (this.cdType === 'S') {
+        this.d = this.h = this.m = this.s = 0;
+        this.S = this.restMillisecond;
       }
 
-      var dhms = 'dhms';
-      var tpls = dhms.substr(dhms.indexOf(this.cdType));
-      tpls.split('').forEach(function (item) {
+      if (this.cdType !== 'S') {
+        this.S = Math.floor(this.restTime % 1000);
+      }
+
+      var dhmsS = 'dhmsS';
+      dhmsS.substr(dhmsS.indexOf(this.cdType)).split('').forEach(function (item) {
         var itemStr = String(_this2[item]);
-        _this2[item + item] = itemStr.length < 2 ? "00".concat(itemStr).substr(-2) : itemStr;
+        var itemLen = 2,
+            itemTpl = item + item;
+
+        if (item === 'S') {
+          itemLen++;
+          itemTpl += item;
+        }
+
+        _this2[itemTpl] = itemStr.length < itemLen ? ('00' + itemStr).substr(-itemLen) : itemStr;
       });
-      this.ms = "".concat(this.m, ":").concat(this.s);
-      this.mmss = "".concat(this.mm, ":").concat(this.ss);
-      this.hms = "".concat(this.h, ":").concat(this.m, ":").concat(this.s);
-      this.hhmmss = "".concat(this.hh, ":").concat(this.mm, ":").concat(this.ss);
-      ['dd', 'hh', 'mm', 'ss', 'ms', 'ms', 'hms', 'mmss', 'hhmmss'].forEach(function (item) {
+      var co = ':';
+      this.ms = this.m + co + this.s;
+      this.hms = this.h + co + this.m + co + this.s;
+      this.mmss = this.mm + co + this.ss;
+      this.hhmmss = this.hh + co + this.mm + co + this.ss;
+      ['dd', 'hh', 'mm', 'ss', 'ms', 'hms', 'mmss', 'hhmmss'].forEach(function (item) {
         _this2[item] = _this2[item].replace(/-/g, '0');
       });
-    };
-
-    /**
-     * 定时器结束
-     */
-    this.setComplete = function () {
-      clearInterval(this.timerId);
-      this.running = false;
-      this.completed = true;
     };
 
     /**

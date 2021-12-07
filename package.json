@@ -1,6 +1,6 @@
 {
   "name": "count-time-down",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A helpful countdown class, 一个实用的的倒计时类",
   "main": "index.js",
   "scripts": {
