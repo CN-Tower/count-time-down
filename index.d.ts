@@ -34,6 +34,7 @@ declare class CountDown {
   restHours: number | null;        // 剩余小时
   restMinuts: number | null;       // 剩余分钟
   restSeconds: number | null;      // 剩余秒数
+  restMilliSeconds: number | null; // 剩余毫秒数
   d: number | null;                // 天数
   h: number | null;                // 小时
   m: number | null;                // 分钟
