@@ -45,7 +45,7 @@ new CountDown(60000, { cdType: 's' }, cd => console.log(cd.s));
 
 ```js
 new CountDown(10000, { interval: 50 }, ({ss, SSS}) => {
-  console.log(`${ss} ${S}`);
+  console.log(`${ss} ${SSS}`);
 });
 ```
 

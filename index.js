@@ -1,5 +1,5 @@
 /*!
- * count-time-down@1.0.1
+ * count-time-down@1.0.3
  * A helpful countdown class, 一个实用的的倒计时类
  */
 (function (factory) {
@@ -38,7 +38,7 @@
    * 
    * 3. 创建一个可以显示毫秒的定时器
    * new CountDown(10000, { interval: 50 }, ({ss, SSS}) => { 
-   *   console.log(`${ss} ${S}`);
+   *   console.log(`${ss} ${SSS}`);
    * });
    * 
    * 4. 创建一个60s倒计时，手动开始和结束
