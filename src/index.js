@@ -217,4 +217,4 @@ Object.defineProperty(CountDown.prototype, 'time', {
     }
   },
 });
-module.exports = CountDown;
+export default CountDown;

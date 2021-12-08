@@ -1,11 +1,12 @@
 /*!
- * count-time-down@1.0.3
+ * count-time-down@1.0.4
  * A helpful countdown class, 一个实用的的倒计时类
  */
-(function (factory) {
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  factory();
-})((function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.CountDown = factory());
+})(this, (function () { 'use strict';
 
   var isFun = function isFun(value) {
     return typeof value === 'function';
@@ -268,6 +269,7 @@
       }
     }
   });
-  module.exports = CountDown;
+
+  return CountDown;
 
 }));
