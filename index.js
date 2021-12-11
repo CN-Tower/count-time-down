@@ -1,5 +1,5 @@
 /*!
- * count-time-down@1.0.4
+ * count-time-down@1.0.5
  * A helpful countdown class, 一个实用的的倒计时类
  */
 (function (global, factory) {

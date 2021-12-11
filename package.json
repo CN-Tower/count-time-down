@@ -1,6 +1,6 @@
 {
   "name": "count-time-down",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A helpful countdown class, 一个实用的的倒计时类",
   "main": "index.js",
   "scripts": {
@@ -40,9 +40,7 @@
     "esno": "^0.12.1",
     "funclib": "^6.0.6",
     "rollup": "^2.60.2",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-formatter": "^1.0.2",
     "rollup-plugin-terser": "^7.0.2"
   }
 }
